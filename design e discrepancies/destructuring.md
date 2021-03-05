@@ -24,6 +24,12 @@ assert(a == 2 and b == 3);
 (var a: u8, b: u8, const c, d) = [_]u8{2, 3, 4, 5}; // b is var and d is const
 assert(a == 2 and b == 3 and c == 4 and d = 5);
 
+(var a: u8, b: u8) = [_]u8{2, 3, 4, 5}; // b is var
+assert(a == 2 and b == 3);
+```
+
+### Destructuring with Inline Multiple Variable Declaration (like Golang)
+```zig
 var a: u8, (b: u8, const c, d) = 2, [_]u8{3, 4, 5}; // b is var and d is const
 assert(a == 2 and b == 3 and c == 4 and d = 5);
 
@@ -31,19 +37,14 @@ assert(a == 2 and b == 3 and c == 4 and d = 5);
 assert(a == 2 and b == 3 and c == 4 and d = 5);
 ```
 
-### with rest ..
+### Destructuring with Rest Operator ..
 ```zig
-var a, const b, .. = .{2, 3, 4, 5};
+(var a: u8, b[1..]: *[3]u8) = [_]u8{2, 3, 4, 5}; // b is var
+assert(a == 2 and b == *[3]u8{3, 4, 5});
 
-var (a, b, ..) = .{2, 3, 4, 5}; // or
-var a, b, .. = .{2, 3, 4, 5};
-
-.., var a, const b = .{2, 3, 4, 5};
-
+(.., var a, const b) = [_]u8{2, 3, 4, 5};
 assert(a == 4 and b == 5);
 
-var (.., a, b) = .{2, 3, 4, 5}; // or
-var .., a, b = .{2, 3, 4, 5};
-
+(.., var a, b) = [_]u8{2, 3, 4, 5}; // b is var
 assert(a == 4 and b == 5);
 ```
