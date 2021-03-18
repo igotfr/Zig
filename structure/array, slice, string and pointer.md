@@ -63,7 +63,7 @@ const assert = std.debug.assert;
 const mem = std.mem;
 
 test "string" {
-  var string: *const [4]u8 = "abcd";             // *const [N]T
+  var string: *const [4]u8 = "abcd";  // *const [N]T
 
   var string_sentinel: *const [4:0]u8 = "abcd";  // *const [N:sentinel]T
 
