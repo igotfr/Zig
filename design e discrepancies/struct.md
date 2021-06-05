@@ -28,7 +28,7 @@ const Person = struct (
   dget .name: []const u8,
   dset .age: u8,
   dgset .height: f16
-)
+) {}
 
 var roliudo = Person {
   .name = "Roliudo",
